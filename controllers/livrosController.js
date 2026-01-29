@@ -1,5 +1,5 @@
 import fs from "fs";
-import { getAllBooks, createBook } from "../services/livrosService.js";
+import { getAllBooks, createBook, getBook } from "../services/livrosService.js";
 
 const getLivros = (req, res) => {
   try {
@@ -19,4 +19,14 @@ const createLivro = (req, res) => {
   }
 };
 
-export { getLivros, createLivro };
+const getLivro = (req, res) => {
+  const id = req.params.id;
+  const livro = getBook(id);
+  try {
+    res.status(200).json(livro);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export { getLivros, createLivro, getLivro };
