@@ -13,7 +13,7 @@ const getLivros = (req, res) => {
 const createLivro = (req, res) => {
   const livroCriado = createBook(req.body);
   try {
-    res.status(200).json(livroCriado);
+    res.status(201).json(livroCriado);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
