@@ -1,14 +1,9 @@
 import { Router } from "express";
+import getLivros from "../controllers/livrosController.js";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  try {
-    res.status(200).json({ message: "Deu tudo certo!" });
-  } catch (error) {
-    res.status(500).json({ message: `Erroou! ${error.message}` });
-  }
-});
+router.get("/", getLivros);
 
 router.post("/", (req, res) => {
   const livroCriado = req.body;
