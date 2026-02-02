@@ -29,4 +29,12 @@ const editBook = (content, id) => {
   fs.writeFileSync("./data/livros.json", JSON.stringify(livros));
 };
 
-export { getAllBooks, createBook, getBook, editBook };
+const deleteBook = (id) => {
+  let livros = JSON.parse(fs.readFileSync("./data/livros.json"));
+
+  const livroFiltrado = livros.filter((livro) => livro.id !== id);
+
+  fs.writeFileSync("./data/livros.json", JSON.stringify(livroFiltrado));
+};
+
+export { getAllBooks, createBook, getBook, editBook, deleteBook };

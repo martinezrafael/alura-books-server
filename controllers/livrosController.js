@@ -47,4 +47,14 @@ const patchLivro = (req, res) => {
   }
 };
 
-export { getLivros, createLivro, getLivro, patchLivro };
+const deleteLivro = (req, res) => {
+  try {
+    const id = req.params.id;
+    deleteLivro(id);
+    res.status(200).json({ message: `Livro id:${id}, deletado.` });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export { getLivros, createLivro, getLivro, patchLivro, deleteLivro };
