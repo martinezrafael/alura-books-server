@@ -18,4 +18,15 @@ const createBook = (novoLivro) => {
   );
 };
 
-export { getAllBooks, createBook, getBook };
+const editBook = (content, id) => {
+  let livros = JSON.parse(fs.readFileSync("./data/livros.json"));
+  const indiceModificado = livros.findIndex((livro) => livro.id === id);
+
+  const conteudoAlterado = { ...livros[indiceModificado], ...content };
+
+  livros[indiceModificado] = conteudoAlterado;
+
+  fs.writeFileSync("./data/livros.json", JSON.stringify(livros));
+};
+
+export { getAllBooks, createBook, getBook, editBook };
