@@ -1,0 +1,16 @@
+{
+  "name": "alura-books-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Rafael Molina Martinez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
