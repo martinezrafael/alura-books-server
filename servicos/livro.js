@@ -28,9 +28,20 @@ function modificaLivro(modificacoes, id) {
   fs.writeFileSync("livros.json", JSON.stringify(livrosAtuais));
 }
 
+function deletarLivroPorId(id) {
+  const livros = JSON.parse(fs.readFileSync("livros.json"));
+  const livroIndex = livros.findIndex((livro) => livro.id === parseInt(id));
+  if (livroIndex === -1) {
+    throw new Error("Livro não encontrado");
+  }
+  livros.splice(livroIndex, 1);
+  fs.writeFileSync("livros.json", JSON.stringify(livros));
+}
+
 module.exports = {
   getTodosLivros,
   getLivroPorId,
   insereLivro,
   modificaLivro,
+  deletarLivroPorId,
 };
