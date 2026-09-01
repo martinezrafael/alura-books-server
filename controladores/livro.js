@@ -19,8 +19,15 @@ function getLivros(req, res) {
 function getLivro(req, res) {
   try {
     const id = req.params.id;
-    const livro = getLivroPorId(id);
-    res.send(livro);
+
+    if (id && Number(id)) {
+      const livro = getLivroPorId(id);
+      res.send(livro);
+    }
+    {
+      res.status(422);
+      res.send("O id do livro precisa ser um número.");
+    }
   } catch (error) {
     res.status(500);
     res.send(error.message);
@@ -42,9 +49,16 @@ function postLivro(req, res) {
 function patchLivro(req, res) {
   try {
     const id = req.params.id;
-    const modificacoes = req.body;
-    modificaLivro(modificacoes, id);
-    res.send("Livro modificado com sucesso!");
+
+    if (id && Number(id)) {
+      const modificacoes = req.body;
+      modificaLivro(modificacoes, id);
+      res.send("Livro modificado com sucesso!");
+    }
+    {
+      res.status(422);
+      res.send("O id do livro precisa ser um número.");
+    }
   } catch (error) {
     res.status(500);
     res.send(error.message);
@@ -54,8 +68,15 @@ function patchLivro(req, res) {
 function deleteLivro(req, res) {
   try {
     const id = req.params.id;
-    deletarLivroPorId(id);
-    res.send("Livro deletado com sucesso!");
+
+    if (id && Number(id)) {
+      deletarLivroPorId(id);
+      res.send("Livro deletado com sucesso!");
+    }
+    {
+      res.status(422);
+      res.send("O id do livro precisa ser um número.");
+    }
   } catch (error) {
     res.status(500);
     res.send(error.message);
