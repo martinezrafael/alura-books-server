@@ -13,7 +13,13 @@ function getLivroPorId(id) {
   return livro;
 }
 
+function insereLivro(novoLivro) {
+  const livros = JSON.parse(fs.readFileSync("livros.json"));
+  fs.writeFileSync("livros.json", JSON.stringify([...livros, novoLivro]));
+}
+
 module.exports = {
   getTodosLivros,
   getLivroPorId,
+  insereLivro,
 };
