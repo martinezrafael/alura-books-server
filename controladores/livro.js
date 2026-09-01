@@ -37,9 +37,15 @@ function getLivro(req, res) {
 function postLivro(req, res) {
   try {
     const novoLivro = req.body;
-    insereLivro(novoLivro);
-    res.status(201);
-    res.send("Livro inserido com sucesso!");
+
+    if (req.body.nome) {
+      insereLivro(novoLivro);
+      res.status(201);
+      res.send("Livro inserido com sucesso!");
+    } else {
+      res.status(422);
+      res.send("O nome do livro é obrigatório.");
+    }
   } catch (error) {
     res.status(500);
     res.send(error.message);
